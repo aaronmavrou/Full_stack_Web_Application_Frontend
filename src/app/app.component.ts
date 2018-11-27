@@ -22,10 +22,6 @@ export class AppComponent implements OnInit{
     this.loadedFeature = feature;
   }
   
-  
-  
-  
-  
   fruits: string[];
   
   constructor(private productService: ProductService){
