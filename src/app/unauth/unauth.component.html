@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Sporting Goods Store!</h1>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-info" *ngIf="!authService.isAuthenticated()" (click)="goBack()">Browse Entire Collection</button>
+    </div>
+</div>
+<hr>
+<div>Welcome to my store! This is the best sporting goods store in town. If you are looking
+for anything to fit your athletic needs, you have come to the right place! Create an account
+or login to get shopping right away!
+</div>
+</body>
+</html>

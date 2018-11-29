@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { ProductService } from '../../product.service';
 import { AppComponent } from '../../app.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -14,13 +15,18 @@ export class SigninComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private productService: ProductService,
-              private appComponent: AppComponent ) { }
+              private appComponent: AppComponent,
+              private router: Router) { }
 
   ngOnInit() {
     this.authService.miniLogout();
   }
   
   fruits: string[];
+  
+  goBack(){
+    this.router.navigate(['unauth']);
+  }
   
   onSignin(form: NgForm){
     const email = form.value.email;

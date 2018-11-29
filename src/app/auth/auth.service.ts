@@ -41,7 +41,7 @@ export class AuthService {
             .then(
                 response => {
                     if(this.verifiedEmail()){
-                        this.router.navigate(['/']);
+                        this.router.navigate(['/recipe']);
                     }
                     else{
                         this.notVerified();

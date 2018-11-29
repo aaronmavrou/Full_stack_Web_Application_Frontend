@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-unauth',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UnauthComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
+
+goBack(){
+    this.router.navigate(['recipe-list']);
+  }
 
   ngOnInit() {
   }
