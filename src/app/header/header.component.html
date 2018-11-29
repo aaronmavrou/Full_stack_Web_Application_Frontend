@@ -1,13 +1,13 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a routerLink="/" class="navbar-brand">Recipe Book</a>
+            <a routerLink="/" class="navbar-brand" *ngIf="authService.isAuthenticated()">Recipe Book</a>
         </div>
         
         <div class="navbar-default">
             <ul class="nav navbar-nav">
-                <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
-                <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
+                <li routerLinkActive="active" *ngIf="authService.isAuthenticated()"><a routerLink="/recipes">Recipes</a></li>
+                <li routerLinkActive="active" *ngIf="authService.isAuthenticated()"><a routerLink="/shopping-list">Shopping List</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <ng-template [ngIf]="!authService.isAuthenticated()">

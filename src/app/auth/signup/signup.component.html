@@ -10,6 +10,7 @@
                 <input type="password" id="password" name="password" ngModel class="form-control">
             </div>
             <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Sign Up</button>
+            <button class="btn btn-info" type="button" (click)="authService.resendVerification()" *ngIf="authService.isKindaAuthenticated()">Resend Verification</button>
         </form>
     </div>
 </div>

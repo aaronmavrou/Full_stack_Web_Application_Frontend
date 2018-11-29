@@ -25,7 +25,7 @@ export class AppComponent implements OnInit{
   fruits: string[];
   
   constructor(private productService: ProductService){
-    this.showFruits();
+    //this.showFruits();
   };
   
   showFruits(){

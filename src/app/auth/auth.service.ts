@@ -8,9 +8,10 @@ import 'firebase/auth';
 
 @Injectable()
 export class AuthService {
-
+    happy: string;
     token: string;
-    emailConfirmed: boolean = false;
+    resend: boolean = false;
+    confirmation: boolean = false;
     
     constructor(private router: Router){}
     
@@ -30,37 +31,32 @@ export class AuthService {
         var user = firebase.auth().currentUser;
         alert("Sending Verification");
         user.sendEmailVerification().then(function(){
-            
         }).catch(function(error){
-            
         });
-        
+        alert(this.token);
     }
     
     signinUser(email: string, password: string){
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(
                 response => {
-                    if(this.hasVerified()){
+                    if(this.verifiedEmail()){
                         this.router.navigate(['/']);
-                        }
-                    else{
-                        this.signinLogout();
                     }
-                    
-                    
+                    else{
+                        this.notVerified();
+                    }
                     firebase.auth().currentUser.getIdToken()
                     .then(
                         (token: string) => this.token = token
-                    )
-                }
-            )
+                    )})
             .catch(
-                    error => console.log(error)
-                );
+                //error => console.log(error)
+                error => alert(error)
+            );
     }
     
-    signinLogout(){
+    notVerified(){
         alert("user has not been verified by email");
         firebase.auth().signOut();
         this.token = null;
@@ -79,13 +75,28 @@ export class AuthService {
         return this.token;
     }
     
+    isKindaAuthenticated(){
+        var user = firebase.auth().currentUser;
+        if(!user){
+            return this.resend;
+        }
+        else{
+            this.resend = true;
+        }
+        return this.resend;
+    }
+    
+    resendVerification(){
+        alert("this is my alert");
+        this.sendVerification();
+    }
+    
     isAuthenticated(){
-        if (!this.hasVerified()){
+        if (!this.verifiedEmail()){
             return false;
         } else{
             return this.token != null;
         }
-    
     }
     
     logout(){
@@ -94,22 +105,19 @@ export class AuthService {
         this.router.navigate(['/']);
     }
     
-    hasVerified(){
+    verifiedEmail(){
         var user = firebase.auth().currentUser;
-        
         if(!user){
-            return this.emailConfirmed;
+            return this.confirmation;
             alert("no user has logged in");
         } else {
             if (user.emailVerified == false) {
-                this.emailConfirmed = false;
+                this.confirmation = false;
             }
             else {
-                this.emailConfirmed = user.emailVerified;
+                this.confirmation = user.emailVerified;
             }
-            
-            return this.emailConfirmed;
+            return this.confirmation;
         }
     }
-    
 }

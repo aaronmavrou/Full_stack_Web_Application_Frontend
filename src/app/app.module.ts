@@ -26,6 +26,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth-guard.service';
+import { UnauthComponent } from './unauth/unauth.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { AuthGuard } from './auth/auth-guard.service';
     RecipeStartComponent,
     RecipeEditComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    UnauthComponent
   ],
   imports: [
     BrowserModule,

@@ -13,3 +13,19 @@
         </form>
     </div>
 </div>
+
+
+
+
+<h1>Fruits</h1>
+<ul>
+  <li *ngFor="let fruit of fruits">
+    {{ fruit }}
+  </li>
+</ul>
+<h3>Add Fruit:</h3>
+
+<input #adding type="text"/>
+<button (click)="addFruits1(adding.value)">Add</button>
+<br>
+<button (click)="showFruits1()">Show Fruits</button>
