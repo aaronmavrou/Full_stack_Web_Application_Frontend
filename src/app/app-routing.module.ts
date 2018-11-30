@@ -9,19 +9,21 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { UnauthComponent } from './unauth/unauth.component';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/unauth', pathMatch: 'full' },
     { path: 'recipes', component:RecipesComponent, children: [
-      { path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard] },
-      { path: ':id', component: RecipeDetailComponent, canActivate: [AuthGuard] },
-      { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard] }
+      { path: 'new', component: RecipeEditComponent },
+      { path: ':id', component: RecipeDetailComponent },
+      { path: ':id/edit', component: RecipeEditComponent }
     ] }, 
-    { path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard] },
+    { path: 'shopping-list', component: ShoppingListComponent},
     { path: 'signup', component: SignupComponent },
     { path: 'signin', component: SigninComponent },
     { path: 'unauth', component: UnauthComponent },
     { path: 'recipe-list', component: RecipeListComponent },
+    { path: 'product-list', component: ProductListComponent},
   ];
 
 @NgModule({

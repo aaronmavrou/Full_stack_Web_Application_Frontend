@@ -42,8 +42,8 @@ export class AppComponent implements OnInit{
     });
   };
   
-  addFruits(newName){
-    this.productService.postFruits(newName)
+  addFruits(newName, newPrice, newQuantity, newDescription, newRating){
+    this.productService.postFruits(newName, newPrice, newQuantity, newDescription, newRating)
     .subscribe(data => console.log(data));
   };
   

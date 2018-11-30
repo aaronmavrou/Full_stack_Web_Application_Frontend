@@ -41,7 +41,7 @@ export class AuthService {
             .then(
                 response => {
                     if(this.verifiedEmail()){
-                        this.router.navigate(['/recipe']);
+                        this.router.navigate(['/recipes']);
                     }
                     else{
                         this.notVerified();
@@ -102,7 +102,7 @@ export class AuthService {
     logout(){
         firebase.auth().signOut();
         this.token = null;
-        this.router.navigate(['/']);
+        this.router.navigate(['/unauth']);
     }
     
     verifiedEmail(){

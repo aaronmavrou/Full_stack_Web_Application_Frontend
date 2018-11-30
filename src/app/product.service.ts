@@ -25,12 +25,13 @@ httpOptions = {
     return this.http.get(this.fruitsUrl1);
   };
   
-  public postFruits(name2: string){
+  public postFruits(name2: string, price2: number, quantity2: number, description: string, rating: number){
     let fruitObj = {
       "name": name2,
-      "price": 10,
-      "quantity": 10,
-      "taxRate": 0,
+      "price": price2,
+      "quantity": quantity2,
+      "myDescription": description,
+      "rating": rating,
     }
     return this.http.post(this.fruitsUrl2, fruitObj, this.httpOptions);
   }

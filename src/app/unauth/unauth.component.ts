@@ -12,8 +12,8 @@ export class UnauthComponent implements OnInit {
   constructor(private authService: AuthService,
               private router: Router) { }
 
-goBack(){
-    this.router.navigate(['recipe-list']);
+goBrowse(){
+    this.router.navigate(['product-list']);
   }
 
   ngOnInit() {

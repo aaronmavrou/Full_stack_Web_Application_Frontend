@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { ProductService } from '../../product.service';
+import { CommentService } from '../../comment.service';
 import { AppComponent } from '../../app.component';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -9,20 +9,20 @@ import { Router, ActivatedRoute } from '@angular/router';
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css'],
-  providers: [ProductService]
+  providers: [CommentService]
 })
 export class SigninComponent implements OnInit {
 
   constructor(private authService: AuthService,
-              private productService: ProductService,
+              private commentService: CommentService,
               private appComponent: AppComponent,
               private router: Router) { }
 
   ngOnInit() {
-    this.authService.miniLogout();
+    this.authService.miniLogout()
   }
   
-  fruits: string[];
+  comments: string[];
   
   goBack(){
     this.router.navigate(['unauth']);
@@ -33,24 +33,33 @@ export class SigninComponent implements OnInit {
     const password = form.value.password;
     this.authService.signinUser(email, password);
   }
+  
+  getDetails(theid){
+    var a= document.getElementById(theid);
+    if(a.style.display =="none"){
+      a.style.display ="block";
+    }else{
+      a.style.display = "none";
+    }
+  }
 
-  showFruits1(){
-    this.productService.getFruits()
+  showComments(){
+    this.commentService.getComments()
     .subscribe((data)=>{
       console.log(data);
       
-      this.fruits = [];
+      this.comments = [];
       
       for(var key in data){
         let str = JSON.stringify(data[key].name);
-        this.fruits.push(str);
+        this.comments.push(str);
       }
     });
   };
   
-  addFruits1(newName){
-    this.productService.postFruits(newName)
-    .subscribe(data => console.log(data));
-  };
+  // addProducts(newName, newPrice, newQuantity){
+  //   this.productService.postFruits(newName, newPrice, newQuantity)
+  //   .subscribe(data => console.log(data));
+  // };
 
 }

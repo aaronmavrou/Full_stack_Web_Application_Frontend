@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-info" *ngIf="!authService.isAuthenticated()" (click)="goBack()">Return to HomePage</button>
+    </div>
+</div>
+
+<h1>Sporting Goods</h1>
+<ul>
+  <ng-container *ngFor="let product of products">
+      <li *ngIf="(product.quantity >= 0)">
+        <span> {{ product.name }} <button type="submit" (click)="getDetails(product.name)">Get Item Details</button> </span>
+            <div id="{{product.name}}" style="display: none;">
+            Price: {{ product.price }}
+            <br>
+            Quantity: {{ product.quantity }}
+            <br>
+            Description: {{ product.myDescription }}
+            <br>
+            Overall Rating: {{ product.rating }}
+            <br>
+            Comments:
+            <br>
+            <br>
+                <ng-container *ngFor="let comment of comments">
+                    <p *ngIf="product.name == comment.theProduct">
+                        User: {{ comment.name }}
+                        <br>
+                        Rating: {{ comment.rating }}
+                        <br>
+                        Comment: {{ comment.comment }}
+                    </p>
+                </ng-container>
+            </div>
+            <br>
+            <hr>
+      </li>
+  </ng-container>
+</ul>
+<h3>Add Product:</h3>
+
+<input #lename type="text"/>Product Name
+<hr>
+<input #leprice type="number"/>Product Price
+<hr>
+<input #lequantity type="number"/>Product Quantity
+<hr>
+<input #ledescription type="text"/>Product Description
+<hr>
+<input #lerating type="number"/>Product Rating
+<button (click)="addProducts(lename.value, leprice.value, lequantity.value, ledescription.value, lerating.value)">Add</button>
+<br>
+<button (click)="showProducts()">Show Products</button>
