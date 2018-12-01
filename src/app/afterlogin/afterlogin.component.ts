@@ -6,27 +6,39 @@ import { CommentService } from '../comment.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css'],
-  providers: [ProductService]
+  selector: 'app-afterlogin',
+  templateUrl: './afterlogin.component.html',
+  styleUrls: ['./afterlogin.component.css']
 })
-export class ProductListComponent implements OnInit {
-
+export class AfterloginComponent implements OnInit {
+  
+  products: any;
+  comments: any;
+  idArray: any;
+  
   constructor(private productService: ProductService,
               private router: Router,
               private authService: AuthService,
               private commentService: CommentService) { }
-  
-  products: any;
-  comments: any;
-  
-  goBack(){
-    this.router.navigate(['unauth']);
-  }
 
   ngOnInit() {
     this.showProducts();
+  }
+  
+  callPut(){
+    this.productService.putProducts(this.idArray[1], 'joe', 4, 3, 'hillbilly', 4)
+    .subscribe((data)=>{
+      console.log(data);
+      this.showProducts();
+    })
+  }
+  
+  deleteProduct(){
+    this.productService.deleteProduct(this.idArray[1])
+    .subscribe((data)=>{
+      console.log(data);
+      this.showProducts();
+    })
   }
   
   getDetails(theid){
@@ -43,7 +55,12 @@ export class ProductListComponent implements OnInit {
     .subscribe((data)=>{
       console.log(data);
       this.products = [];
+      this.idArray=[];
       this.products = data;
+       for(var key in data){
+        let str = (data[key]._id);
+        this.idArray.push(str);
+      }
       this.showComments();
     });
   };
@@ -56,14 +73,5 @@ export class ProductListComponent implements OnInit {
       this.comments = data;
     });
   };
-  
-  addProducts(newName, newPrice, newQuantity, newDescription, newRating){
-    this.productService.postFruits(newName, newPrice, newQuantity, newDescription, newRating)
-    .subscribe((data)=>{
-      this.showProducts();
-      console.log(data);
-    });
-  };
-  
-  
+
 }

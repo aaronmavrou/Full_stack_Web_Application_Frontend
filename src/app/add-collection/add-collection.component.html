@@ -1,0 +1,13 @@
+<h3>Add A Collection:</h3>
+
+<input #lename type="text"/>Collection Name
+<hr>
+<input #ledescription type="text"/>Collection Description
+<hr>
+<input #levisibility name="myvis" type="checkbox" (click)="changeBool()" checked/> Make Private
+<hr>
+<input #leowner type="text"/>Collection Owner
+<button (click)="addCollections(lename.value, ledescription.value, leowner.value)">Add</button>
+<button (click)="showValue(levisibility.value)">Show us</button>
+
+

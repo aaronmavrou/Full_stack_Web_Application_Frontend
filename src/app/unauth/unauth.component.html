@@ -12,5 +12,18 @@
 for anything to fit your athletic needs, you have come to the right place! Create an account
 or login to get shopping right away!
 </div>
+
+<ul>
+  <ng-container *ngFor="let product of products">
+      <li *ngIf="(product.rating == 5)">
+        {{ product.name }} 
+        <br>
+        Overall Rating: {{ product.rating }}
+        <br>
+        <hr>
+      </li>
+  </ng-container>
+</ul>
+
 </body>
 </html>

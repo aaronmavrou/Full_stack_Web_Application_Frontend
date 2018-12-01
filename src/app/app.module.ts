@@ -27,6 +27,10 @@ import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth-guard.service';
 import { UnauthComponent } from './unauth/unauth.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { AfterloginComponent } from './afterlogin/afterlogin.component';
+import { AddCollectionComponent } from './add-collection/add-collection.component';
+import { PublicCollectionComponent } from './public-collection/public-collection.component';
+import { MyCollectionComponent } from './my-collection/my-collection.component';
 
 
 @NgModule({
@@ -44,7 +48,11 @@ import { ProductListComponent } from './product-list/product-list.component';
     SignupComponent,
     SigninComponent,
     UnauthComponent,
-    ProductListComponent
+    ProductListComponent,
+    AfterloginComponent,
+    AddCollectionComponent,
+    PublicCollectionComponent,
+    MyCollectionComponent
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,7 @@ export class AuthService {
                 }
             )
             .catch(
-                error=> console.log(error)
+                error=> alert(error)
             );
     }
     
@@ -41,7 +41,7 @@ export class AuthService {
             .then(
                 response => {
                     if(this.verifiedEmail()){
-                        this.router.navigate(['/recipes']);
+                        this.router.navigate(['/afterlogin']);
                     }
                     else{
                         this.notVerified();
@@ -52,7 +52,7 @@ export class AuthService {
                     )})
             .catch(
                 //error => console.log(error)
-                error => alert(error)
+                error => alert(error + "    Please contact the store manager for any clarification")
             );
     }
     

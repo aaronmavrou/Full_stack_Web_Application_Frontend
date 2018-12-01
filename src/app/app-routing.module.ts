@@ -10,6 +10,8 @@ import { AuthGuard } from './auth/auth-guard.service';
 import { UnauthComponent } from './unauth/unauth.component';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { AfterloginComponent } from './afterlogin/afterlogin.component';
+import { AddCollectionComponent } from './add-collection/add-collection.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/unauth', pathMatch: 'full' },
@@ -24,6 +26,8 @@ const appRoutes: Routes = [
     { path: 'unauth', component: UnauthComponent },
     { path: 'recipe-list', component: RecipeListComponent },
     { path: 'product-list', component: ProductListComponent},
+    { path: 'afterlogin', component: AfterloginComponent},
+    { path: 'add-collection', component: AddCollectionComponent},
   ];
 
 @NgModule({
