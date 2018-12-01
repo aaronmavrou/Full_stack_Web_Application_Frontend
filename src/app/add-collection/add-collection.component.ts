@@ -44,17 +44,13 @@ addCollections(name, description, theval, owner){
 saveEverything(name1, description1, owner1){
   this.addCollections(name1, description1, this.visValue, owner1);
   for(var i =0; i< this.myproducts.length; i++){
-    this.addItemInCollection("Santa", this.myproducts[i], this.myquantitys[i]);
+    this.addItemInCollection(name1, this.myproducts[i], this.myquantitys[i]);
   }
   this.leaveHere();
 }
 
 leaveHere(){
   this.router.navigate(['afterlogin']);
-}
-
-showValue(value){
-  alert(this.visValue);
 }
 
 changeBool(){

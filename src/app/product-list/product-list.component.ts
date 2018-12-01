@@ -37,10 +37,6 @@ export class ProductListComponent implements OnInit {
       a.style.display = "none";
     }
   }
-
-  showId(val: string){
-    alert(val);
-  }
   
   showProducts(){
     this.productService.getFruits()

@@ -12,6 +12,7 @@ import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component
 import { ProductListComponent } from './product-list/product-list.component';
 import { AfterloginComponent } from './afterlogin/afterlogin.component';
 import { AddCollectionComponent } from './add-collection/add-collection.component';
+import { PublicCollectionComponent } from './public-collection/public-collection.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/unauth', pathMatch: 'full' },
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
     { path: 'product-list', component: ProductListComponent},
     { path: 'afterlogin', component: AfterloginComponent},
     { path: 'add-collection', component: AddCollectionComponent},
+    { path: 'public-collection', component: PublicCollectionComponent},
   ];
 
 @NgModule({

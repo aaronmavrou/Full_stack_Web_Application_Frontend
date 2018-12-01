@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../product.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
+import { CollectionService } from '../collection.service';
+import { Observable } from 'rxjs';
+import { ItemInCollectionService } from '../item-in-collection.service';
 
 @Component({
   selector: 'app-public-collection',
@@ -7,9 +13,51 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicCollectionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private productService: ProductService,
+              private router: Router,
+              private authService: AuthService,
+              private collectionService: CollectionService,
+              private itemincollectionservice: ItemInCollectionService) { }
 
+
+  collections: any;
+  myproducts: any;
+  
   ngOnInit() {
+    this.showCollections();
   }
+
+goBack(){
+    this.router.navigate(['afterlogin']);
+  }
+
+getDetails(theid){
+    var a= document.getElementById(theid);
+    if(a.style.display =="none"){
+      a.style.display ="block";
+    }else{
+      a.style.display = "none";
+    }
+  }
+
+
+  showCollections(){
+    this.collectionService.getCollections()
+    .subscribe((data)=>{
+      console.log(data);
+      this.collections = [];
+      this.collections = data;
+      this.showItems();
+    });
+};
+
+showItems(){
+    this.itemincollectionservice.getItems()
+    .subscribe((data)=>{
+      console.log(data);
+      this.myproducts = [];
+      this.myproducts = data;
+    });
+  };
 
 }

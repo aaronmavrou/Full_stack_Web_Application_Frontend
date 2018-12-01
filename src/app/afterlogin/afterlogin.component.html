@@ -6,6 +6,12 @@
         <button class="btn btn-success"  (click)="makeCollection()">Add A Collection</button>
     </div>
 </div>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-info"  (click)="viewCollections()">View Public Collections</button>
+    </div>
+</div>
 
 <ul>
   <ng-container *ngFor="let product of products; let i = index">

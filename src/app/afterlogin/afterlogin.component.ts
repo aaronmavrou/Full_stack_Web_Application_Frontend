@@ -37,6 +37,10 @@ export class AfterloginComponent implements OnInit {
     this.router.navigate(['add-collection']);
   }
   
+  viewCollections(){
+    this.router.navigate(['public-collection']);
+  }
+  
   deleteProduct(){
     this.productService.deleteProduct(this.idArray[1])
     .subscribe((data)=>{

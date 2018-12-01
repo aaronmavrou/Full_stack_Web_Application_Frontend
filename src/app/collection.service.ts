@@ -16,7 +16,7 @@ export class CollectionService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
   
-  public collectionsUrl1 = 'comllections/getall';
+  public collectionsUrl1 = 'collections/getall';
   public collectionsUrl2 = 'collections/create';
   
   public getCollections(){
