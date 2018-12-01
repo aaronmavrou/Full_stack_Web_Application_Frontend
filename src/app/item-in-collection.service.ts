@@ -27,31 +27,24 @@ httpOptions = {
     return this.http.get(this.itemsUrl1);
   };
   
-  public postItems(name2: string, price2: number, quantity2: number, description: string, rating: number){
+  public postItems(name2: string, prodName2: string, quantity2: number){
     let itemObj = {
       "name": name2,
-      "price": price2,
-      "quantity": quantity2,
-      "myDescription": description,
-      "rating": rating,
+      "prodName": prodName2,
+      "prodQuantity": quantity2,
     }
     return this.http.post(this.itemsUrl1, itemObj, this.httpOptions);
   }
   
-  public putItems(loc: string, name2: string, price2: number, quantity2: number, description: string, rating: number){
+  public putItems(loc: string, name2: string, prodName2: number, quantity2: number){
     let itemObj = {
       "name": name2,
-      "price": price2,
-      "quantity": quantity2,
-      "myDescription": description,
-      "rating": rating
+      "prodName": prodName2,
+      "prodQuantity": quantity2,
     }
-    //loc = loc.substring(1,(i.length-1));
     let jay = this.itemsUrl3;
     jay = jay + loc;
     alert(jay);
-   // this.fruitsUrl3 = jay;
     return this.http.put(jay, itemObj, this.httpOptions);
-    //this.fruitsUrl3 = jay;
   }
 }

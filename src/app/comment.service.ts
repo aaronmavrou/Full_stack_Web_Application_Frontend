@@ -23,13 +23,15 @@ export class CommentService {
     return this.http.get(this.commentsUrl1);
   };
   
-  // public postProducts(name2: string, price2: number, quantity2: number){
-  //   let fruitObj = {
-  //     "name": name2,
-  //     "price": price2,
-  //     "quantity": quantity2,
-  //   }
-  //   return this.http.post(this.fruitsUrl2, fruitObj, this.httpOptions);
-  // }
+  public postComments(name2: string, product2: string, rating2: number, comment2: string, vis2: boolean){
+    let commentObj = {
+      "name": name2,
+      "theProduct": product2,
+      "rating": rating2,
+      "comment": comment2,
+      "thevis": vis2,
+    }
+    return this.http.post(this.commentsUrl2, commentObj, this.httpOptions);
+  }
   
 }

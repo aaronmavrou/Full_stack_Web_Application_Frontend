@@ -1,3 +1,13 @@
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-danger" (click)="leaveHere()">Cancel</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <button type="submit" (click)="saveEverything(lename.value,ledescription.value,leowner.value)">Save Collection</button>
+    </div>
+</div>
 <h3>Add A Collection:</h3>
 
 <input #lename type="text"/>Collection Name
@@ -7,7 +17,35 @@
 <input #levisibility name="myvis" type="checkbox" (click)="changeBool()" checked/> Make Private
 <hr>
 <input #leowner type="text"/>Collection Owner
-<button (click)="addCollections(lename.value, ledescription.value, leowner.value)">Add</button>
 <button (click)="showValue(levisibility.value)">Show us</button>
+
+
+<br><br><br>
+<ul>
+    <ng-container *ngFor="let item of singleArray">
+      <li>
+           Product: {{  item.stat }} <br>
+           Quantity: {{ item.bil }}
+      </li>
+    </ng-container>
+</ul>
+<br><br><br>
+
+<h1>Add to your Collection!</h1>
+<ul>
+  <ng-container *ngFor="let product of products">
+      <li *ngIf="(product.quantity >= 0)">
+        {{ product.name }} 
+        <span>
+        <input #q type="number" min="1"/><button type="submit" (click)="addToCollection(product.name, q.value)">Add to your collection</button>
+        </span>
+            <div id="{{product.name}}" style="display: none;">
+            </div>
+            <br>
+            <hr>
+      </li>
+  </ng-container>
+</ul>
+
 
 

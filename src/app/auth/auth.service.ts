@@ -41,7 +41,7 @@ export class AuthService {
             .then(
                 response => {
                     if(this.verifiedEmail()){
-                        this.router.navigate(['/afterlogin']);
+                        this.router.navigate(['afterlogin']);
                     }
                     else{
                         this.notVerified();

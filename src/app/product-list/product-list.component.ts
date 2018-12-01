@@ -38,6 +38,10 @@ export class ProductListComponent implements OnInit {
     }
   }
 
+  showId(val: string){
+    alert(val);
+  }
+  
   showProducts(){
     this.productService.getFruits()
     .subscribe((data)=>{

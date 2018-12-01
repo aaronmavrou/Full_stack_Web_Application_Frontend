@@ -10,6 +10,10 @@
       <li *ngIf="(product.quantity >= 0)">
         <span> {{ product.name }} <button type="submit" (click)="getDetails(product.name)">Get Item Details</button> </span>
             <div id="{{product.name}}" style="display: none;">
+            <span>
+            <input #a type="text"/>Product Name <button (click)="showId(a.value)"></button>
+            </span>
+            <hr>
             Price: {{ product.price }}
             <br>
             Quantity: {{ product.quantity }}
@@ -48,5 +52,4 @@
 <hr>
 <input #lerating type="number"/>Product Rating
 <button (click)="addProducts(lename.value, leprice.value, lequantity.value, ledescription.value, lerating.value)">Add</button>
-<br>
-<button (click)="showProducts()">Show Products</button>
+

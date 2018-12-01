@@ -33,6 +33,10 @@ export class AfterloginComponent implements OnInit {
     })
   }
   
+  makeCollection(){
+    this.router.navigate(['add-collection']);
+  }
+  
   deleteProduct(){
     this.productService.deleteProduct(this.idArray[1])
     .subscribe((data)=>{

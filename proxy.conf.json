@@ -20,10 +20,10 @@
         "logLevel": "info"
     },
     
-    "/items": {
+    "/": {
         "target": "https://angular7-amavrou.c9users.io:8081",
         "secure": false,
         "changeOrigin": true,
         "logLevel": "info"
-    
+    }
 }
