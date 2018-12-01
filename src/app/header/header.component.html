@@ -1,11 +1,14 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a routerLink="/" class="navbar-brand" *ngIf="authService.isAuthenticated()">Recipe Book</a>
+            <a routerLink="/afterlogin" class="navbar-brand" *ngIf="authService.isAuthenticated()">Sporting Goods</a>
         </div>
         
         <div class="navbar-default">
             <ul class="nav navbar-nav">
+                <ng-container *ngIf="authService.isAuthenticated()">
+                    <li *ngIf="authService.isManager()"><a>Manager Account</a></li>
+                </ng-container>
                 <li routerLinkActive="active" *ngIf="authService.isAuthenticated()"><a routerLink="/recipes">Recipes</a></li>
                 <li routerLinkActive="active" *ngIf="authService.isAuthenticated()"><a routerLink="/shopping-list">Shopping List</a></li>
             </ul>
@@ -15,11 +18,27 @@
                     <li><a routerLink="/signin">Login</a></li>
                 </ng-template>
                 <li><a style="cursor: pointer;" (click)="onLogout()" *ngIf="authService.isAuthenticated()">Logout</a></li>
-                <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated()">
+                <li class="dropdown" appDropdown>
                     <a style="cursor: pointer;" class="dropdown-toggle" role="button">Policies <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a style="cursor: pointer;">Security & Privacy Policy</a></li>
-                        <li><a style="cursor: pointer;">DMCA Notice & Takedown Policy</a></li>
+                        <li><a style="cursor: pointer;" (click)="viewPrivacy()">Security & Privacy Policy</a></li>
+                        <li><a style="cursor: pointer;" (click)="viewTakedown()">DMCA Notice & Takedown Policy</a></li>
+                        
+                        <ng-container *ngIf="authService.isAuthenticated()">
+                        <li><a *ngIf="authService.isManager()" (click)="logStuff()"style="cursor: pointer;">Log Requests</a></li>
+                        </ng-container>
+                        
+                        <ng-container *ngIf="authService.isAuthenticated()">
+                        <li><a *ngIf="authService.isManager()" (click)="manageComments()"style="cursor: pointer;">Manage Comments</a></li>
+                        </ng-container>
+                        
+                        <ng-container *ngIf="authService.isAuthenticated()">
+                        <li><a *ngIf="authService.isManager()" (click)="deactivateAccounts()"style="cursor: pointer;">Deactivate Accounts</a></li>
+                        </ng-container>
+                        
+                        <ng-container *ngIf="authService.isAuthenticated()">
+                        <li><a *ngIf="authService.isManager()" (click)="makeManager()"style="cursor: pointer;">Make A Manager</a></li>
+                        </ng-container>
                     </ul>
                 </li>
             </ul>

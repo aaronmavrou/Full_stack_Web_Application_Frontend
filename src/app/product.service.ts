@@ -37,22 +37,43 @@ httpOptions = {
     return this.http.post(this.fruitsUrl1, fruitObj, this.httpOptions);
   }
   
-  public putProducts(loc: string, name2: string, price2: number, quantity2: number, description: string, rating: number){
+  public putProductsName(loc: string, name2: string){
     let productObj = {
-      "name": name2,
-      "price": price2,
-      "quantity": quantity2,
-      "myDescription": description,
-      "rating": rating
+      "name": name2
     }
-    //loc = loc.substring(1,(i.length-1));
     let jay = this.fruitsUrl3;
     jay = jay + loc;
-    alert(jay);
-
     return this.http.put(jay, productObj, this.httpOptions);
-
   }
+  
+  public putProductsPrice(loc: string, price2: number){
+    let productObj = {
+      "price": price2
+    }
+    let jay = this.fruitsUrl3;
+    jay = jay + loc;
+    return this.http.put(jay, productObj, this.httpOptions);
+  }
+  
+  public putProductsQuantity(loc: string,  quantity2: number){
+    let productObj = {
+      "quantity": quantity2
+    }
+    let jay = this.fruitsUrl3;
+    jay = jay + loc;
+    return this.http.put(jay, productObj, this.httpOptions);
+  }
+  
+    
+  public putProductsDescription(loc: string, description: string){
+    let productObj = {
+      "myDescription": description
+    }
+    let jay = this.fruitsUrl3;
+    jay = jay + loc;
+    return this.http.put(jay, productObj, this.httpOptions);
+  }
+  
   
   public deleteProduct(loc: string){
     let jay= this.fruitsUrl2;

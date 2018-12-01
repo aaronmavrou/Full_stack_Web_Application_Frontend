@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -7,14 +8,38 @@ import { AuthService } from '../auth/auth.service';
 })
 
 export class HeaderComponent implements OnInit{
-    constructor(private authService: AuthService){}
+    constructor(private authService: AuthService,
+                private router: Router,){}
     
     ngOnInit(){
-       // this.authService MAKE your admins boy
+       this.authService.createManager();
+    }
+    viewPrivacy(){
+        this.router.navigate(['privacy']);
+    }
+    
+    viewTakedown(){
+        this.router.navigate(['takedown']);
+    }
+    
+    logStuff(){
+        this.router.navigate(['logging']);
     }
     
     onLogout(){
         this.authService.logout();
+    }
+    
+    manageComments(){
+        this.router.navigate(['comments']);
+    }
+    
+    deactivateAccounts(){
+        this.router.navigate(['deactivate']);
+    }
+    
+    makeManager(){
+        this.router.navigate(['privledge']);
     }
     
 }

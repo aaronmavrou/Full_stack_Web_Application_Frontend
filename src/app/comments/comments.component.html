@@ -1,0 +1,34 @@
+<p>
+  comments works!
+</p>
+
+<h1>Comments</h1>
+
+<div class="row">
+    <div class="col-xs-12">
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let comment of comments; let i = index">
+    User: {{ comment.name }}
+    <br>
+    Product: {{comment.theProduct }}
+    <br>
+    Rating: {{ comment.rating }}
+    <br>
+    Comment: {{ comment.comment }}
+    <br>
+    <button class="btn btn-success" *ngIf="comment.thevis == true"(click)="updateCommentFalse(i)">Hide Comment</button>
+    <button class="btn btn-danger" *ngIf="comment.thevis == false"(click)="updateCommentTrue(i)">Show Comment</button>
+  </li>
+</ul>
+</div>
+</div>
+
+
+<h3>Add Comment:</h3>
+
+<input #adding type="text"/>
+<button (click)="addFruits(adding.value)">Add</button>
+
+<br>
+
+<button (click)="showComments()">Show Comments</button>

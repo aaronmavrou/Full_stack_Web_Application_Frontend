@@ -18,6 +18,7 @@ export class CommentService {
   
   public commentsUrl1 = 'comments/getall';
   public commentsUrl2 = 'comments/create';
+  public commentsUrl3 = 'comments/updateComment/';
   
   public getComments(){
     return this.http.get(this.commentsUrl1);
@@ -32,6 +33,15 @@ export class CommentService {
       "thevis": vis2,
     }
     return this.http.post(this.commentsUrl2, commentObj, this.httpOptions);
+  }
+  
+  public putComments(loc: string, vis2: boolean){
+    let commentObj = {
+      "thevis": vis2,
+    }
+    let jay = this.commentsUrl3;
+    jay = jay + loc;
+    return this.http.put(jay, commentObj, this.httpOptions);
   }
   
 }

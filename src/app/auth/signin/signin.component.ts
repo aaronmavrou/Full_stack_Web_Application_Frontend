@@ -22,11 +22,11 @@ export class SigninComponent implements OnInit {
     this.authService.miniLogout()
   }
   
-  comments: string[];
-  
   goBack(){
     this.router.navigate(['unauth']);
   }
+  
+  comments: string[];
   
   onSignin(form: NgForm){
     const email = form.value.email;

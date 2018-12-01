@@ -13,6 +13,14 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { AfterloginComponent } from './afterlogin/afterlogin.component';
 import { AddCollectionComponent } from './add-collection/add-collection.component';
 import { PublicCollectionComponent } from './public-collection/public-collection.component';
+import { ReviewComponent } from './review/review.component';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { TakedownComponent } from './takedown/takedown.component';
+import { LoggingComponent } from  './logging/logging.component';
+import { AdminComponent } from './admin/admin.component';
+import { PrivledgeComponent } from './privledge/privledge.component';
+import { DeactivateComponent } from './deactivate/deactivate.component';
+import { CommentsComponent } from './comments/comments.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/unauth', pathMatch: 'full' },
@@ -30,6 +38,14 @@ const appRoutes: Routes = [
     { path: 'afterlogin', component: AfterloginComponent},
     { path: 'add-collection', component: AddCollectionComponent},
     { path: 'public-collection', component: PublicCollectionComponent},
+    { path: 'review', component: ReviewComponent},
+    { path: 'privacy', component: PrivacyComponent},
+    { path: 'takedown', component: TakedownComponent},
+    { path: 'logging', component: LoggingComponent},
+    { path: 'admin', component: AdminComponent},
+    { path: 'deactivate', component: DeactivateComponent},
+    { path: 'privledge', component: PrivledgeComponent},
+    { path: 'comments', component: CommentsComponent},
   ];
 
 @NgModule({

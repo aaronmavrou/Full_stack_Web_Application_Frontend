@@ -25,13 +25,13 @@ export class AfterloginComponent implements OnInit {
     this.showProducts();
   }
   
-  callPut(){
-    this.productService.putProducts(this.idArray[1], 'joe', 4, 3, 'hillbilly', 4)
-    .subscribe((data)=>{
-      console.log(data);
-      this.showProducts();
-    })
-  }
+  // callPut(){
+  //   this.productService.putProducts(this.idArray[1], 'joe', 4, 3, 'hillbilly', 4)
+  //   .subscribe((data)=>{
+  //     console.log(data);
+  //     this.showProducts();
+  //   })
+  // }
   
   makeCollection(){
     this.router.navigate(['add-collection']);
@@ -47,6 +47,10 @@ export class AfterloginComponent implements OnInit {
       console.log(data);
       this.showProducts();
     })
+  }
+  
+  makeReview(productName: string){
+    this.router.navigate(['review']);
   }
   
   getDetails(theid){

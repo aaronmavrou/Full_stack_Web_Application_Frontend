@@ -5,9 +5,11 @@
 </div>
 
 <h1>Sporting Goods</h1>
-<ul>
+<div class="row">
+    <div class="col-xs-12">
+    <ul class="list-group">
   <ng-container *ngFor="let product of products">
-      <li *ngIf="(product.quantity >= 0)">
+      <li class="list-group-item" *ngIf="(product.quantity >= 0)">
         <span> {{ product.name }} <button type="submit" (click)="getDetails(product.name)">Get Item Details</button> </span>
             <div id="{{product.name}}" style="display: none;">
             Price: {{ product.price }}
@@ -22,7 +24,7 @@
             <br>
             <br>
                 <ng-container *ngFor="let comment of comments">
-                    <p *ngIf="product.name == comment.theProduct">
+                    <p *ngIf="product.name == comment.theProduct && comment.thevis == true">
                         User: {{ comment.name }}
                         <br>
                         Rating: {{ comment.rating }}
@@ -31,11 +33,11 @@
                     </p>
                 </ng-container>
             </div>
-            <br>
-            <hr>
       </li>
   </ng-container>
 </ul>
+</div>
+</div>
 <h3>Add Product:</h3>
 
 <input #lename type="text"/>Product Name

@@ -37,7 +37,7 @@
       <li *ngIf="(product.quantity >= 0)">
         {{ product.name }} 
         <span>
-        <input #q type="number" min="1"/><button type="submit" (click)="addToCollection(product.name, q.value)">Add to your collection</button>
+        <input #q type="number"/><button type="submit" (click)="addToCollection(product.name, q.value)">Add to your collection</button>
         </span>
             <div id="{{product.name}}" style="display: none;">
             </div>

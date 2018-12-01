@@ -1,19 +1,30 @@
 import { Router } from '@angular/router';
-
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import 'firebase/auth';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Injectable()
 export class AuthService {
+    httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'my-auth-token'
+  })
+};
+    
+    
     happy: string;
     token: string;
+    admins: any;
     resend: boolean = false;
     confirmation: boolean = false;
     
-    constructor(private router: Router){}
+    constructor(private router: Router,
+                private http: HttpClient){}
     
     signupUser(email: string, password: string){
         firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -40,7 +51,10 @@ export class AuthService {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(
                 response => {
-                    if(this.verifiedEmail()){
+                    if(this.verifiedEmail() && this.isManager()){
+                        this.router.navigate(['admin']);
+                    }
+                    else if(this.verifiedEmail()){
                         this.router.navigate(['afterlogin']);
                     }
                     else{
@@ -54,6 +68,32 @@ export class AuthService {
                 //error => console.log(error)
                 error => alert(error + "    Please contact the store manager for any clarification")
             );
+    }
+    
+    createManager(){
+        this.getManagers()
+        .subscribe((data)=>{
+            this.admins=[];
+            for(var i in data){
+            if(data){
+                this.admins.push(data[i].email);
+                }
+            }
+        });
+    }
+    
+    isManager(){
+        let theEmail = firebase.auth().currentUser.email;
+        for (var i= 0; i<this.admins.length;i++){
+            if(theEmail == this.admins[i]){
+                return true;
+            }
+        }
+        return false; 
+    }
+    
+    getUser(){
+        return firebase.auth().currentUser.email;
     }
     
     notVerified(){
@@ -120,4 +160,27 @@ export class AuthService {
             return this.confirmation;
         }
     }
+    
+      public managersUrl1 = 'managers/create';
+  public managersUrl2 = 'managers/delete/';
+  public managersUrl3 = 'managers/getall';
+  
+  public getManagers(){
+    return this.http.get(this.managersUrl3);
+  };
+  
+  public postManagers(email2: string){
+    let managerObj = {
+      "email": email2,
+    }
+    return this.http.post(this.managersUrl1, managerObj, this.httpOptions);
+  }
+  
+  public deleteManager(loc: string){
+    let jay= this.managersUrl2;
+    jay = jay + loc;
+    alert(jay);
+    return this.http.delete(jay, this.httpOptions);
+  }
+    
 }

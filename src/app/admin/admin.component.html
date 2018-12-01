@@ -1,0 +1,51 @@
+<p>
+  admin works!
+</p>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-success"  (click)="addProducts(lename.value, leprice.value, lequantity.value, ledescription.value)">Add New Product</button>
+    </div>
+</div>
+<h3>Add Product:</h3>
+<input #lename type="text"/>Product Name
+<br>
+<input #leprice type="number"/>Product Price
+<br>
+<input #lequantity type="number"/>Product Quantity
+<br>
+<input #ledescription type="text"/>Product Description
+<hr>
+
+<h1>Sporting Goods</h1>
+<div class="row">
+    <div class="col-xs-12">
+    <ul class="list-group">
+  <ng-container *ngFor="let product of products; let i = index">
+      <li class="list-group-item">
+        <span> {{ product.name }} <input #thename type="text"/>
+            <button class="btn btn-success" type="submit" (click)="changeName(thename.value, i)">Change Name</button>
+        </span>
+        <br>
+        <button class="btn btn-info" type="submit" (click)="getDetails(product.name)">Get Item Details</button> 
+            <div id="{{product.name}}" style="display: none;">
+            Price: {{ product.price }} <input #theprice type="number"/>
+            <button class="btn btn-success" type="submit" (click)="changePrice(theprice.value, i)">Change Price</button>
+            <br>
+            Quantity: {{ product.quantity }} <input #thequantity type="number"/>
+            <button class="btn btn-success" type="submit" (click)="changeQuantity(thequantity.value, i)">Change Quantity</button>
+            <br>
+            Description: {{ product.myDescription }} <input #thedesc type="text"/>
+            <button class="btn btn-success" type="submit" (click)="changeDesc(thedesc.value, i)">Change Description</button>
+            <br>
+            Overall Rating: {{ product.rating }}
+            <br>
+            <button class="btn btn-danger" type="submit" (click)="deleteProd(i)">Delete Product</button>
+            </div>
+      </li>
+  </ng-container>
+</ul>
+</div>
+</div>
+
+
+

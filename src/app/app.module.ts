@@ -31,6 +31,14 @@ import { AfterloginComponent } from './afterlogin/afterlogin.component';
 import { AddCollectionComponent } from './add-collection/add-collection.component';
 import { PublicCollectionComponent } from './public-collection/public-collection.component';
 import { MyCollectionComponent } from './my-collection/my-collection.component';
+import { ReviewComponent } from './review/review.component';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { TakedownComponent } from './takedown/takedown.component';
+import { LoggingComponent } from './logging/logging.component';
+import { AdminComponent } from './admin/admin.component';
+import { DeactivateComponent } from './deactivate/deactivate.component';
+import { CommentsComponent } from './comments/comments.component';
+import { PrivledgeComponent } from './privledge/privledge.component';
 
 
 @NgModule({
@@ -52,7 +60,15 @@ import { MyCollectionComponent } from './my-collection/my-collection.component';
     AfterloginComponent,
     AddCollectionComponent,
     PublicCollectionComponent,
-    MyCollectionComponent
+    MyCollectionComponent,
+    ReviewComponent,
+    PrivacyComponent,
+    TakedownComponent,
+    LoggingComponent,
+    AdminComponent,
+    DeactivateComponent,
+    CommentsComponent,
+    PrivledgeComponent
   ],
   imports: [
     BrowserModule,
