@@ -17,7 +17,7 @@
   <ng-container *ngFor="let product of products; let i = index">
       <li>
         <span> {{ product.name }} <button type="submit" (click)="getDetails(product.name)">Get Item Details</button> 
-        <button type="submit">Add to Cart</button>
+        <button type="submit" (click)="addTheItem(product.name, product.price)">Add to Cart</button>
         <button type="submit" (click)="makeReview(product.name)">Review this Product</button>
         </span>
             <div id="{{product.name}}" style="display: none;">
@@ -47,18 +47,23 @@
       </li>
   </ng-container>
 </ul>
-<h3>Add Product:</h3>
-
-<input #lename type="text"/>Product Name
-<hr>
-<input #leprice type="number"/>Product Price
-<hr>
-<input #lequantity type="number"/>Product Quantity
-<hr>
-<input #ledescription type="text"/>Product Description
-<hr>
-<input #lerating type="number"/>Product Rating
-<button (click)="addProducts(lename.value, leprice.value, lequantity.value, ledescription.value, lerating.value)">Add</button>
+<br><br><hr>
+<h1>Shopping Cart</h1>
+<table style="width:100%">
+    <tr><th>Product</th><th>Quantity</th><th>Price</th><th>Remove Product</th><th>Increase Quantity</th><th>Decrease Quantity</th></tr>
+    <ng-container *ngFor="let cartItem of cartItems; let i = index">
+        <tr>
+           <th>{{cartItem.name }}</th>
+           <th>{{cartItem.quantity}}</th>
+           <th>{{cartItem.price}}</th>
+           <th><button class="btn btn-danger" type="submit" (click)="deleteTheItem(i)">Delete Product</button></th>
+           <th><button class="btn btn-primary"type="submit" (click)="increase(i)">+</button></th>
+           <th><button class="btn btn-info"type="submit" (click)="decrease(i)">-</button></th>
+        </tr>
+    </ng-container>
+    <tr><th></th><th>TOTAL</th><th>{{totalPrice}}</th></tr>
+</table>
+<button class="btn btn-warning"type="submit" (click)="deleteAll()">Clear Cart</button>
+<button class="btn btn-success"type="submit">Buy Items</button>
 <br>
-<button (click)="showProducts()">Show Products</button>
-<button (click)="deleteProduct()">Show Products</button>
+<hr>

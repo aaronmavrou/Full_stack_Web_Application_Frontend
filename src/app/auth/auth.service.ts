@@ -58,7 +58,6 @@ export class AuthService {
     
     signinUser(email: string, password: string){
         for(var i = 0; i<this.userEmails.length; i++){
-            alert(email + "     " + this.userEmails[i] + "       " + this.userBools[i]);
             if((email == this.userEmails[i]) && (this.userBools[i]==false)){
                 alert("This account has been deactivated. Please contact the store manager for further inquiries.");
                 return;
@@ -84,7 +83,6 @@ export class AuthService {
                         (token: string) => this.token = token
                     )})
             .catch(
-                //error => console.log(error)
                 error => alert(error + "    Please contact the store manager for any clarification")
             );
     }
