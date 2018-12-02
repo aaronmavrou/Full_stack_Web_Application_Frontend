@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit{
     
     ngOnInit(){
        this.authService.createManager();
+       this.authService.getAllUsers();
     }
     viewPrivacy(){
         this.router.navigate(['privacy']);

@@ -5,7 +5,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <button type="submit" (click)="saveEverything(lename.value,ledescription.value,leowner.value)">Save Collection</button>
+        <button type="submit" (click)="saveEverything(lename.value,ledescription.value)">Save Collection</button>
     </div>
 </div>
 <h3>Add A Collection:</h3>
@@ -15,8 +15,6 @@
 <input #ledescription type="text"/>Collection Description
 <hr>
 <input #levisibility name="myvis" type="checkbox" (click)="changeBool()" checked/> Make Private
-<hr>
-<input #leowner type="text"/>Collection Owner
 <button (click)="showValue(levisibility.value)">Show us</button>
 
 
@@ -37,7 +35,7 @@
       <li *ngIf="(product.quantity >= 0)">
         {{ product.name }} 
         <span>
-        <input #q type="number"/><button type="submit" (click)="addToCollection(product.name, q.value)">Add to your collection</button>
+        <input #q type="number" min='0' value='1'/><button type="submit" (click)="addToCollection(product.name, q.value)">Add to your collection</button>
         </span>
             <div id="{{product.name}}" style="display: none;">
             </div>

@@ -13,9 +13,7 @@ export class UnauthComponent implements OnInit {
   constructor(private authService: AuthService,
               private router: Router,
               private productService: ProductService) { }
-              
  products: any;
-
 goBrowse(){
     this.router.navigate(['product-list']);
   }
@@ -32,5 +30,6 @@ goBrowse(){
   ngOnInit() {
     this.showProducts();
   }
-
+  
 }
+

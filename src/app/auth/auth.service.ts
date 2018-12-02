@@ -15,8 +15,10 @@ export class AuthService {
     'Authorization': 'my-auth-token'
   })
 };
-    
-    
+
+    public userEmails: any;
+    public userBools: any;
+    public theEmail: string;
     happy: string;
     token: string;
     admins: any;
@@ -31,11 +33,19 @@ export class AuthService {
             .then(
                 response=>{
                     this.sendVerification();
+                    this.postThisUser(email);
                 }
             )
             .catch(
                 error=> alert(error)
             );
+    }
+    
+    postThisUser(theEmail){
+        this.postUsers(theEmail, true)
+        .subscribe((data)=>{
+            console.log(data);
+        });
     }
     
     sendVerification(){
@@ -44,17 +54,26 @@ export class AuthService {
         user.sendEmailVerification().then(function(){
         }).catch(function(error){
         });
-        alert(this.token);
     }
     
     signinUser(email: string, password: string){
+        for(var i = 0; i<this.userEmails.length; i++){
+            alert(email + "     " + this.userEmails[i] + "       " + this.userBools[i]);
+            if((email == this.userEmails[i]) && (this.userBools[i]==false)){
+                alert("This account has been deactivated. Please contact the store manager for further inquiries.");
+                return;
+            }
+        }
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(
                 response => {
                     if(this.verifiedEmail() && this.isManager()){
+                        this.theEmail = firebase.auth().currentUser.email;
                         this.router.navigate(['admin']);
+                        
                     }
                     else if(this.verifiedEmail()){
+                        this.theEmail = firebase.auth().currentUser.email;
                         this.router.navigate(['afterlogin']);
                     }
                     else{
@@ -70,14 +89,28 @@ export class AuthService {
             );
     }
     
+//User for the login function to validate authentication
+  public getAllUsers(){
+    this.getUsers()
+    .subscribe((data)=>{
+      console.log(data);
+      this.userEmails = [];
+      this.userBools = [];
+      for(var key in data){
+        let str = data[key].email;
+        this.userEmails.push(str);
+        let prp = data[key].isActivated;
+        this.userBools.push(prp);
+      }
+    });
+  };
+    
     createManager(){
         this.getManagers()
         .subscribe((data)=>{
             this.admins=[];
             for(var i in data){
-            if(data){
                 this.admins.push(data[i].email);
-                }
             }
         });
     }
@@ -86,18 +119,13 @@ export class AuthService {
         if(firebase.auth().currentUser == null){
             return false;
         }
-        let theEmail = firebase.auth().currentUser.email;
+        let leEmail = firebase.auth().currentUser.email;
         for (var i= 0; i<this.admins.length;i++){
-            if(theEmail == this.admins[i]){
+            if(leEmail == this.admins[i]){
                 return true;
             }
         }
         return false; 
-    }
-    
-    
-    getUser(){
-        return firebase.auth().currentUser.email;
     }
     
     notVerified(){
@@ -165,7 +193,7 @@ export class AuthService {
         }
     }
     
-      public managersUrl1 = 'managers/create';
+  public managersUrl1 = 'managers/create';
   public managersUrl2 = 'managers/delete/';
   public managersUrl3 = 'managers/getall';
   
@@ -184,6 +212,39 @@ export class AuthService {
     let jay= this.managersUrl2;
     jay = jay + loc;
     alert(jay);
+    return this.http.delete(jay, this.httpOptions);
+  }
+  
+    
+  public usersUrl1 = 'users/getall';
+  public usersUrl2 = 'users/create';
+  public usersUrl3 = 'users/delete/';
+  public usersUrl4 = 'users/updateUser/';
+  
+  public getUsers(){
+    return this.http.get(this.usersUrl1);
+  };
+  
+  public postUsers(email2: string, activate2: boolean){
+    let fruitObj = {
+      "email": email2,
+      "isActivated": activate2,
+    }
+    return this.http.post(this.usersUrl2, fruitObj, this.httpOptions);
+  }
+  
+  public putUser(loc: string, activate2: boolean){
+    let userObj = {
+      "isActivated": activate2
+    }
+    let jay = this.usersUrl4;
+    jay = jay + loc;
+    return this.http.put(jay, userObj, this.httpOptions);
+  }
+  
+  public deleteUser(loc: string){
+    let jay= this.usersUrl3;
+    jay = jay + loc;
     return this.http.delete(jay, this.httpOptions);
   }
     

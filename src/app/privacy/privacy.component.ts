@@ -24,7 +24,7 @@ myIds: any;
     if(this.authService.isManager()){
       this.router.navigate(['admin']);
     }
-    else if(this.authService.isAuthenticated(){
+    else if(this.authService.isAuthenticated()){
       this.router.navigate(['afterlogin']);
     }
     else{

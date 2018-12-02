@@ -17,6 +17,7 @@ export class AddCollectionComponent implements OnInit {
   singleArray: any;
   myproducts: any;
   myquantitys: any;//array we populate every time the click add
+  
   products: any;
   
   
@@ -41,8 +42,10 @@ addCollections(name, description, theval, owner){
   });
 };
 
-saveEverything(name1, description1, owner1){
-  this.addCollections(name1, description1, this.visValue, owner1);
+saveEverything(name1, description1){
+  let owner = this.authService.theEmail;
+  alert(owner);
+  this.addCollections(name1, description1, this.visValue, owner);
   for(var i =0; i< this.myproducts.length; i++){
     this.addItemInCollection(name1, this.myproducts[i], this.myquantitys[i]);
   }
@@ -75,10 +78,10 @@ addToCollection(product, quantity){
   this.myproducts.push(product);
   this.myquantitys.push(quantity);
   this.singleArray=[];
-  for (var _i = 0; _i < this.myproducts.length; _i++) {
+  for (var i = 0; i < this.myproducts.length; i++) {
     this.singleArray.push({
-                         stat: this.myproducts[_i],
-                         bil: this.myquantitys[_i] 
+                         stat: this.myproducts[i],
+                         bil: this.myquantitys[i] 
                         });
 }
 }

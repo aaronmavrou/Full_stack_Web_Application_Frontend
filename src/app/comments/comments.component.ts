@@ -21,11 +21,11 @@ myIds: any;
     this.showComments();
   }
   
-    goBack(){
+  goBack(){
       this.router.navigate(['admin']);
   }
   
-    showComments(){
+  showComments(){
     this.commentService.getComments()
     .subscribe((data)=>{
       console.log(data);
