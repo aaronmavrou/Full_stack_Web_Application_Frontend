@@ -74,7 +74,6 @@ export class AfterloginComponent implements OnInit {
       console.log(data);
       this.itemIdArray = [];
       this.cartItems=[];
-      this.priceArray=[];
       this.cartItems = data;
        for(var key in data){
         let str = (data[key]._id);

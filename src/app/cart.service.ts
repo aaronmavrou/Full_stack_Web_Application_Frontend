@@ -56,7 +56,6 @@ httpOptions = {
   public deleteCartProduct(loc: string){
     let jay= this.cartsUrl4;
     jay = jay + loc;
-    alert(jay);
     return this.http.delete(jay, this.httpOptions);
   }
   
