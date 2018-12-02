@@ -83,6 +83,9 @@ export class AuthService {
     }
     
     isManager(){
+        if(firebase.auth().currentUser == null){
+            return false;
+        }
         let theEmail = firebase.auth().currentUser.email;
         for (var i= 0; i<this.admins.length;i++){
             if(theEmail == this.admins[i]){
@@ -91,6 +94,7 @@ export class AuthService {
         }
         return false; 
     }
+    
     
     getUser(){
         return firebase.auth().currentUser.email;

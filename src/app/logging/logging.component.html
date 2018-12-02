@@ -1,3 +1,22 @@
-<p>
-  logging works!
-</p>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-info" (click)="goBack()">Return to HomePage</button>
+    </div>
+</div>
+
+<h1>DMCA Notice & Takedown Policy</h1>
+
+<div class="row">
+    <div class="col-xs-12">
+    <ul class="list-group">
+  <ng-container *ngFor="let dmca of dmcas; let i = index">
+      <li class="list-group-item" *ngIf="(dmca.type == 'dmca')">
+        {{ dmca.info }} 
+      </li>
+  </ng-container>
+</ul>
+</div>
+</div>
+<hr>
+<textarea type="text" #description class = "form-control" rows="3"></textarea>
+<button class="btn btn-success"type="submit" (click)="savePolicy(description.value )">Log Request, Notice or Dispute</button>

@@ -13,17 +13,19 @@ for anything to fit your athletic needs, you have come to the right place! Creat
 or login to get shopping right away!
 </div>
 <br><br>
-<ul>
+<div class="row">
+    <div class="col-xs-12">
+<ul class="list-group">
   <ng-container *ngFor="let product of products">
-      <li *ngIf="(product.rating == 5)">
+      <li class="list-group-item" *ngIf="(product.rating == 5)">
         {{ product.name }} 
         <br>
         Overall Rating: {{ product.rating }}
-        <br>
-        <hr>
       </li>
   </ng-container>
 </ul>
+</div>
+</div>
 
 </body>
 </html>

@@ -21,15 +21,17 @@ myIds: any;
     this.showComments();
   }
   
+    goBack(){
+      this.router.navigate(['admin']);
+  }
+  
     showComments(){
     this.commentService.getComments()
     .subscribe((data)=>{
       console.log(data);
-      
       this.comments = [];
       this.comments = data;
       this.myIds = [];
-      
       for(var key in data){
         let str = data[key]._id;
         this.myIds.push(str);

@@ -1,9 +1,41 @@
 <div class="row">
     <div class="col-xs-12">
-        <button class="btn btn-info" *ngIf="!authService.isAuthenticated()" (click)="goBack()">Return to HomePage</button>
+        <button class="btn btn-info" (click)="goBack()">Return to HomePage</button>
     </div>
 </div>
 
-<p>
-  takedown works!
-</p>
+<h1>DMCA Notice & Takedown Policy</h1>
+
+<div>Contact Information:<br><br>
+Name: Aaron Mavrou <br>
+Email: amavrou@uwo.ca <br>
+TelNo: 555-555-5557 <br>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+    <ul class="list-group">
+  <ng-container *ngFor="let dmca of dmcas; let i = index">
+      <li class="list-group-item" *ngIf="(dmca.type == 'takedown')">
+        {{ dmca.info }} 
+        <ng-container *ngIf="authService.isAuthenticated()">
+            <div *ngIf="authService.isManager()">
+            <hr>
+            <textarea *ngIf="authService.isManager()"
+                type="text"
+                #description
+                class = "form-control"
+                rows="12">
+            </textarea>
+            <br>
+            <button class="btn btn-success" type="submit" (click)="savePolicy(i, description.value)">Save Security and Privacy Policy</button>
+            </div>
+        </ng-container>
+      </li>
+  </ng-container>
+</ul>
+</div>
+</div>
+
+
+
