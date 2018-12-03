@@ -282,5 +282,9 @@ deleteTheItem(deleteItemId){
       this.comments = data;
     });
   };
+  
+  viewOwn(){
+    this.router.navigate(['mycol']);
+  }
 
 }

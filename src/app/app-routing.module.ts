@@ -22,6 +22,7 @@ import { PrivledgeComponent } from './privledge/privledge.component';
 import { DeactivateComponent } from './deactivate/deactivate.component';
 import { CommentsComponent } from './comments/comments.component';
 import {AddcommentComponent } from './addcomment/addcomment.component';
+import { MyCollectionComponent } from './my-collection/my-collection.component';
 
 //all the routes in my application
 const appRoutes: Routes = [
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
     { path: 'privledge', component: PrivledgeComponent},
     { path: 'comments', component: CommentsComponent},
     { path: 'addcomment', component: AddcommentComponent},
+    { path: 'mycol', component: MyCollectionComponent},
   ];
 
 @NgModule({

@@ -18,6 +18,7 @@ export class CollectionService {
   //urls
   public collectionsUrl1 = 'collections/getall';
   public collectionsUrl2 = 'collections/create';
+  public collectionsUrl3 = 'collections/delete/'
   
   //get method
   public getCollections(){
@@ -34,4 +35,12 @@ export class CollectionService {
     }
     return this.http.post(this.collectionsUrl2, collectionObj, this.httpOptions);
   };
+  
+  public deleteCollection(loc: string){
+    let jay= this.collectionsUrl3;
+    jay = jay + loc;
+    alert(jay);
+    return this.http.delete(jay, this.httpOptions);
+  }
+  
 }
