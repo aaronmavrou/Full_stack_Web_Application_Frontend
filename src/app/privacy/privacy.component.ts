@@ -20,6 +20,7 @@ myIds: any;
     this.showDmcas();
   }
   
+  //reroutes correctly
   goBack(){
     if(this.authService.isManager()){
       this.router.navigate(['admin']);
@@ -32,6 +33,7 @@ myIds: any;
     }
   }
 
+  //shows the current privacy policy
   showDmcas(){
     this.dmcaService.getDmcas()
     .subscribe((data)=>{
@@ -48,6 +50,7 @@ myIds: any;
     });
   };
   
+  //allows the manager to update the privacy policy
   savePolicy(val, theInfo){
     theInfo = this.authService.encodeHTML(theInfo);
     this.dmcaService.putDmcas(this.myIds[val], theInfo)

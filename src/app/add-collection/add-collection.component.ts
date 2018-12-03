@@ -34,7 +34,7 @@ export class AddCollectionComponent implements OnInit {
                 this.myquantitys = [];
                 this.singleArray = [];
               }
-
+//this function posts the collection to the database
 addCollections(name, description, theval, owner){
   this.collectionService.postCollections(name, description, theval, owner)
     .subscribe((data)=>{
@@ -42,21 +42,25 @@ addCollections(name, description, theval, owner){
   });
 };
 
+//saves all the data that was input using proper encoding
 saveEverything(name1, description1){
   name1 = this.authService.encodeHTML(name1);
   description1 = this.authService.encodeHTML(description1);
   let owner = this.authService.theEmail;
   this.addCollections(name1, description1, this.visValue, owner);
+  //for loop adds each item in collection to the database
   for(var i =0; i< this.myproducts.length; i++){
     this.addItemInCollection(name1, this.myproducts[i], this.myquantitys[i]);
   }
   this.leaveHere();
 }
 
+//reroutes to home page
 leaveHere(){
   this.router.navigate(['afterlogin']);
 }
 
+//used to determine public or private
 changeBool(){
   if(this.num == 1){
     this.visValue = false;
@@ -68,6 +72,7 @@ changeBool(){
   }
 }
 
+//adds item in collection to database
 addItemInCollection(colName, product, quantity){
   this.itemincollectionservice.postItems(colName, product, quantity)
     .subscribe((data)=>{
@@ -75,6 +80,7 @@ addItemInCollection(colName, product, quantity){
   });
 }
 
+//displays the items in the collection on the page
 addToCollection(product, quantity){
   this.myproducts.push(product);
   this.myquantitys.push(quantity);
@@ -87,6 +93,7 @@ addToCollection(product, quantity){
 }
 }
 
+//gets all the products from the collection
 showProducts(){
     this.productService.getFruits()
     .subscribe((data)=>{
@@ -96,6 +103,7 @@ showProducts(){
     });
 };
 
+//Gets all the items from the collection
 showItems(){
     this.itemincollectionservice.getItems()
     .subscribe((data)=>{

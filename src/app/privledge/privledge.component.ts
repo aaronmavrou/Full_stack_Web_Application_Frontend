@@ -15,7 +15,7 @@ export class PrivledgeComponent implements OnInit {
   
   constructor(private router: Router,
               private authService: AuthService) { }
-  
+  //reroutes to homepage
   goBack(){
     this.router.navigate(['admin']);
   }
@@ -24,7 +24,7 @@ export class PrivledgeComponent implements OnInit {
     this.showUsers();
   }
   
-  
+  //displays list of users
   showUsers(){
     this.authService.getUsers()
     .subscribe((data)=>{
@@ -39,6 +39,7 @@ export class PrivledgeComponent implements OnInit {
     });
   };
 
+//adds the user to the manager databse
   makeManager(i){
     this.authService.admins.push(this.users[i].email);
     this.authService.postManagers(this.users[i].email)

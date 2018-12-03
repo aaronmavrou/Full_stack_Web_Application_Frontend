@@ -38,26 +38,31 @@ export class AfterloginComponent implements OnInit {
     })
   }
   
+  //reroutes to make a collection page
   makeCollection(){
     this.router.navigate(['add-collection']);
   }
   
+  //reroutes to view colleciton page
   viewCollections(){
     this.router.navigate(['public-collection']);
   }
   
-  deleteProduct(){
-    this.productService.deleteProduct(this.idArray[1])
-    .subscribe((data)=>{
-      console.log(data);
-      this.showProducts();
-    })
-  }
+  // //
+  // deleteProduct(){
+  //   this.productService.deleteProduct(this.idArray[1])
+  //   .subscribe((data)=>{
+  //     console.log(data);
+  //     this.showProducts();
+  //   })
+  // }
   
+  //reroutes to make review page
   makeReview(){
     this.router.navigate(['addcomment']);
   }
   
+  //allows user to get item details
   getDetails(theid){
     var a= document.getElementById(theid);
     if(a.style.display =="none"){
@@ -67,6 +72,7 @@ export class AfterloginComponent implements OnInit {
     }
   }
   
+  //displays the suers cart with updated quantities and items
   showCart(){
     this.cartService.getCart()
     .subscribe((data)=>{
@@ -82,6 +88,7 @@ export class AfterloginComponent implements OnInit {
   });
   }
   
+  //allows the user to add items to their shopping cart
   addTheItem(newName, newPrice, quantity){
     if(quantity == 0){
       alert("Cannot add item to cart because there is not enough stock");
@@ -95,6 +102,7 @@ export class AfterloginComponent implements OnInit {
   }
   };
   
+  //recalculates the price during shopping cart changes
   updatePrice(thePrice, val){
     this.cartService.putCartsPrice(this.itemIdArray[val], thePrice)
     .subscribe((data)=>{
@@ -103,6 +111,7 @@ export class AfterloginComponent implements OnInit {
     })
   }
   
+  //allows the user to decrease products in their cart
   decrease(index){
     let myQuantity = 0;
     let newPrice = 0;
@@ -125,6 +134,7 @@ export class AfterloginComponent implements OnInit {
     })
   }
   
+  //allows the user to increase products in their cart
   increase(index){
     for(var i =0; i<this.products.length;i++){
       if(this.cartItems[index].name == this.products[i].name && this.cartItems[index].quantity == this.products[i].quantity){
@@ -153,6 +163,8 @@ export class AfterloginComponent implements OnInit {
     })
   }
   
+  //when the user clicks the buy button, this function carrys out the buying methods
+  //including changing stock levels and clearing the cart and printing a receipt
 buyAll(){
   var isConfirmed = confirm("Are you sure you want to make this purchase?");//asks if user wants to make purchase
   if(isConfirmed){
@@ -191,6 +203,7 @@ buyAll(){
   }
 }
   
+  //this allows the user to clear their cart
 public deleteAll(){
   var isConfirmed = confirm("Are you sure you want to clear your cart?");
   if(isConfirmed){
@@ -212,6 +225,7 @@ public deleteAll(){
   }
 }
   
+  //this updates the total price of the cart
   public getTotal(){
     this.totalPrice = 0;
     for(var i = 0; i<this.cartItems.length; i++){
@@ -219,6 +233,7 @@ public deleteAll(){
     }
   }
   
+  //this lets the user delete one specific item in their cart
 deleteTheItem(deleteItemId){
     this.cartService.deleteCartProduct(this.itemIdArray[deleteItemId])
       .subscribe((data)=>{
@@ -227,21 +242,22 @@ deleteTheItem(deleteItemId){
     })
 };
   
-makeTextNode(theItem){
-    var a = document.createElement("div");
-    a.appendChild(theItem);
-    return a.innerHTML;
-}
+// makeTextNode(theItem){
+//     var a = document.createElement("div");
+//     a.appendChild(theItem);
+//     return a.innerHTML;
+// }
 
-makeButton(theId){
-  alert(theId);
-  var btn = document.createElement("BUTTON");
-  var t = document.createTextNode("Delete Item");
-  btn.appendChild(t);
-  btn.setAttribute("onclick", "this.deleteJew()");
-  return btn;
-}
+// makeButton(theId){
+//   alert(theId);
+//   var btn = document.createElement("BUTTON");
+//   var t = document.createTextNode("Delete Item");
+//   btn.appendChild(t);
+//   btn.setAttribute("onclick", "this.deleteJew()");
+//   return btn;
+// }
 
+//this displays all the products in the store
   showProducts(){
     this.productService.getFruits()
     .subscribe((data)=>{
@@ -257,6 +273,7 @@ makeButton(theId){
     });
   };
   
+  //this shows the use the comments when they click on item details
   showComments(){
     this.commentService.getComments()
     .subscribe((data)=>{

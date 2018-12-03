@@ -20,10 +20,12 @@ export class LoggingComponent implements OnInit {
     this.showDmcas();
   }
   
+  //reroute to homepage
   goBack(){
     this.router.navigate(['admin']);
   }
   
+  //show the dmca reports
   showDmcas(){
     this.dmcaService.getDmcas()
     .subscribe((data)=>{
@@ -33,6 +35,7 @@ export class LoggingComponent implements OnInit {
     });
   };
   
+  //allows the manager to save the dmca policy
   savePolicy(theInfo){
     theInfo = this.authService.encodeHTML(theInfo);
     this.dmcaService.postDmcas('dmca', theInfo)

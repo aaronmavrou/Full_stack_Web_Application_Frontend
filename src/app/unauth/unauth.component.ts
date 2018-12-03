@@ -14,10 +14,12 @@ export class UnauthComponent implements OnInit {
               private router: Router,
               private productService: ProductService) { }
  products: any;
+ //allows user to route to view entire inventory
 goBrowse(){
     this.router.navigate(['product-list']);
   }
   
+  //displays all products 
   showProducts(){
     this.productService.getFruits()
     .subscribe((data)=>{
@@ -27,6 +29,7 @@ goBrowse(){
     });
   };
   
+  //displays list of products
   ngOnInit() {
     this.showProducts();
   }

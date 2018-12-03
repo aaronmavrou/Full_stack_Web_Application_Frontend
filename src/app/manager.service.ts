@@ -16,15 +16,17 @@ httpOptions = {
 
   constructor(private http: HttpClient, private authService: AuthService) { };
   
-  
+  //urls
   public managersUrl1 = 'managers/create';
   public managersUrl2 = 'managers/delete/';
   public managersUrl3 = 'managers/getall';
   
+  //get method
   public getManagers(){
     return this.http.get(this.managersUrl3);
   };
   
+  //post method
   public postManagers(email2: string){
     let managerObj = {
       "email": email2,
@@ -32,6 +34,7 @@ httpOptions = {
     return this.http.post(this.managersUrl1, managerObj, this.httpOptions);
   }
   
+  //delete manager
   public deleteManager(loc: string){
     let jay= this.managersUrl2;
     jay = jay + loc;

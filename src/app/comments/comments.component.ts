@@ -21,10 +21,12 @@ myIds: any;
     this.showComments();
   }
   
+  //reroutes to the homepage
   goBack(){
       this.router.navigate(['admin']);
   }
   
+  //displays the comments on the screen
   showComments(){
     this.commentService.getComments()
     .subscribe((data)=>{
@@ -39,6 +41,7 @@ myIds: any;
     });
   };
   
+  //change the comment boolean to false
   updateCommentFalse(val){
     this.commentService.putComments(this.myIds[val], false)
       .subscribe((data)=>{
@@ -46,6 +49,7 @@ myIds: any;
     });
   }
   
+  //change the comment boolean back to true
   updateCommentTrue(val){
     this.commentService.putComments(this.myIds[val], true)
       .subscribe((data)=>{

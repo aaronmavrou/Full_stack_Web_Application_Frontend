@@ -21,6 +21,7 @@ export class ProductListComponent implements OnInit {
   products: any;
   comments: any;
   
+  //reroutes to homepage
   goBack(){
     this.router.navigate(['unauth']);
   }
@@ -29,6 +30,7 @@ export class ProductListComponent implements OnInit {
     this.showProducts();
   }
   
+  //allows user to get details on click
   getDetails(theid){
     var a= document.getElementById(theid);
     if(a.style.display =="none"){
@@ -38,6 +40,7 @@ export class ProductListComponent implements OnInit {
     }
   }
   
+  //shows all products
   showProducts(){
     this.productService.getFruits()
     .subscribe((data)=>{
@@ -48,6 +51,7 @@ export class ProductListComponent implements OnInit {
     });
   };
   
+  //shows all comments
   showComments(){
     this.commentService.getComments()
     .subscribe((data)=>{
@@ -57,13 +61,13 @@ export class ProductListComponent implements OnInit {
     });
   };
   
-  addProducts(newName, newPrice, newQuantity, newDescription, newRating){
-    this.productService.postFruits(newName, newPrice, newQuantity, newDescription, newRating)
-    .subscribe((data)=>{
-      this.showProducts();
-      console.log(data);
-    });
-  };
+  // addProducts(newName, newPrice, newQuantity, newDescription, newRating){
+  //   this.productService.postFruits(newName, newPrice, newQuantity, newDescription, newRating)
+  //   .subscribe((data)=>{
+  //     this.showProducts();
+  //     console.log(data);
+  //   });
+  // };
   
   
 }

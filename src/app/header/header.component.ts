@@ -52,30 +52,31 @@ public deleteAllAtStart(){
   }
 }
     
+    //reroutes to privacy
     viewPrivacy(){
         this.router.navigate(['privacy']);
     }
-    
+    //reroutes to takedown
     viewTakedown(){
         this.router.navigate(['takedown']);
     }
-    
+    //reroutes to logging
     logStuff(){
         this.router.navigate(['logging']);
     }
-    
+    //reroutes on logout
     onLogout(){
         this.authService.logout();
     }
-    
+    //reroutes to managing comments page
     manageComments(){
         this.router.navigate(['comments']);
     }
-    
+    //reroutes to deactivate accounts
     deactivateAccounts(){
         this.router.navigate(['deactivate']);
     }
-    
+    //reroutes to making manager page
     makeManager(){
         this.router.navigate(['privledge']);
     }

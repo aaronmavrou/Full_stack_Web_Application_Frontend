@@ -15,6 +15,7 @@ export class DeactivateComponent implements OnInit {
   constructor(private router: Router,
               private authService: AuthService) { }
   
+  //reroute to the homepage
   goBack(){
     this.router.navigate(['admin']);
   }
@@ -23,7 +24,7 @@ export class DeactivateComponent implements OnInit {
     this.showUsers();
   }
   
-  
+  //show all the users in the database
   showUsers(){
     this.authService.getUsers()
     .subscribe((data)=>{
@@ -38,6 +39,7 @@ export class DeactivateComponent implements OnInit {
     });
   };
   
+  //change the activated boolean to false
   updateUserFalse(val){
     this.authService.putUser(this.myIds[val], false)
       .subscribe((data)=>{
@@ -46,6 +48,7 @@ export class DeactivateComponent implements OnInit {
     });
   }
   
+  //change the activated boolean back to true
   updateUserTrue(val){
     this.authService.putUser(this.myIds[val], true)
       .subscribe((data)=>{

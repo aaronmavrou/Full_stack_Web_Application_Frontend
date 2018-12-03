@@ -23,6 +23,7 @@ import { DeactivateComponent } from './deactivate/deactivate.component';
 import { CommentsComponent } from './comments/comments.component';
 import {AddcommentComponent } from './addcomment/addcomment.component';
 
+//all the routes in my application
 const appRoutes: Routes = [
     { path: '', redirectTo: '/unauth', pathMatch: 'full' },
     { path: 'recipes', component:RecipesComponent, children: [

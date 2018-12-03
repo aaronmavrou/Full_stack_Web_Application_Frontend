@@ -15,15 +15,17 @@ export class CommentService {
 };
 
   constructor(private http: HttpClient, private authService: AuthService) { }
-  
+  //urls
   public commentsUrl1 = 'comments/getall';
   public commentsUrl2 = 'comments/create';
   public commentsUrl3 = 'comments/updateComment/';
   
+  //get method
   public getComments(){
     return this.http.get(this.commentsUrl1);
   };
   
+  //post method
   public postComments(name2: string, product2: string, rating2: number, comment2: string, vis2: boolean){
     let commentObj = {
       "name": name2,
@@ -35,6 +37,7 @@ export class CommentService {
     return this.http.post(this.commentsUrl2, commentObj, this.httpOptions);
   }
   
+  //put method
   public putComments(loc: string, vis2: boolean){
     let commentObj = {
       "thevis": vis2,

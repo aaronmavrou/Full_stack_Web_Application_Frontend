@@ -26,36 +26,37 @@ export class SigninComponent implements OnInit {
     this.router.navigate(['unauth']);
   }
   
-  comments: string[];
+  // comments: string[];
   
+  //allows the user to sign in
   onSignin(form: NgForm){
     const email = form.value.email;
     const password = form.value.password;
     this.authService.signinUser(email, password);
   }
   
-  getDetails(theid){
-    var a= document.getElementById(theid);
-    if(a.style.display =="none"){
-      a.style.display ="block";
-    }else{
-      a.style.display = "none";
-    }
-  }
+  // getDetails(theid){
+  //   var a= document.getElementById(theid);
+  //   if(a.style.display =="none"){
+  //     a.style.display ="block";
+  //   }else{
+  //     a.style.display = "none";
+  //   }
+  // }
 
-  showComments(){
-    this.commentService.getComments()
-    .subscribe((data)=>{
-      console.log(data);
+  // showComments(){
+  //   this.commentService.getComments()
+  //   .subscribe((data)=>{
+  //     console.log(data);
       
-      this.comments = [];
+  //     this.comments = [];
       
-      for(var key in data){
-        let str = JSON.stringify(data[key].name);
-        this.comments.push(str);
-      }
-    });
-  };
+  //     for(var key in data){
+  //       let str = JSON.stringify(data[key].name);
+  //       this.comments.push(str);
+  //     }
+  //   });
+  // };
   
   // addProducts(newName, newPrice, newQuantity){
   //   this.productService.postFruits(newName, newPrice, newQuantity)

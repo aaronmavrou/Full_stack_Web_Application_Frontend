@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
     this.router.navigate(['unauth']);
   }
   
-  
+  //allows a user to signup
   onSignup(form: NgForm){
     const email= form.value.email;
     const password = form.value.password;

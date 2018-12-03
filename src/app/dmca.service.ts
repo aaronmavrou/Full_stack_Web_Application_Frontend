@@ -15,7 +15,7 @@ export class DmcaService {
 };
 
   constructor(private http: HttpClient, private authService: AuthService) { }
-  
+  //urls
   public dmcasUrl1 = 'dmcas/getall';
   public dmcasUrl2 = 'dmcas/create';
   public dmcasUrl3 = 'dmcas/updateDmca/';
@@ -24,6 +24,7 @@ export class DmcaService {
     return this.http.get(this.dmcasUrl1);
   };
   
+  //post method
   public postDmcas(type2: string, info2: string){
     let dmcaObj = {
       "type": type2,
@@ -32,6 +33,7 @@ export class DmcaService {
     return this.http.post(this.dmcasUrl2, dmcaObj, this.httpOptions);
   };
   
+  //put method
   public putDmcas(loc: string, info2: string){
     let dmcaObj = {
       "info": info2,

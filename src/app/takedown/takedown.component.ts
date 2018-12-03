@@ -20,7 +20,7 @@ export class TakedownComponent implements OnInit {
   ngOnInit() {
     this.showDmcas();
   }
-  
+  //reroutes correctly
   goBack(){
     if(this.authService.isManager()){
       this.router.navigate(['admin']);
@@ -33,6 +33,7 @@ export class TakedownComponent implements OnInit {
     }
   }
   
+  //shows the current policy
    showDmcas(){
     this.dmcaService.getDmcas()
     .subscribe((data)=>{
@@ -49,6 +50,7 @@ export class TakedownComponent implements OnInit {
     });
   };
   
+  //allows admin to save policy
   savePolicy(val, theInfo){
     theInfo = this.authService.encodeHTML(theInfo);
     this.dmcaService.putDmcas(this.myIds[val], theInfo)

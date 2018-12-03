@@ -18,15 +18,15 @@ httpOptions = {
     'Authorization': 'my-auth-token'
   })
 };
-
+//urls
   public itemsUrl1 = 'items/usingItems';
   public itemsUrl2 = 'items/deleteItem';
   public itemsUrl3 = 'items/updateItem/';
-  
+  //get method
   public getItems(){
     return this.http.get(this.itemsUrl1);
   };
-  
+  //post method
   public postItems(name2: string, prodName2: string, quantity2: number){
     let itemObj = {
       "name": name2,
@@ -36,6 +36,7 @@ httpOptions = {
     return this.http.post(this.itemsUrl1, itemObj, this.httpOptions);
   }
   
+  //put method
   public putItems(loc: string, name2: string, prodName2: number, quantity2: number){
     let itemObj = {
       "name": name2,

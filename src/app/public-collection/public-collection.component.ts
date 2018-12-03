@@ -26,11 +26,11 @@ export class PublicCollectionComponent implements OnInit {
   ngOnInit() {
     this.showCollections();
   }
-
+//reroutes to homepage
 goBack(){
     this.router.navigate(['afterlogin']);
   }
-
+//displays collection details on click
 getDetails(theid){
     var a= document.getElementById(theid);
     if(a.style.display =="none"){
@@ -40,7 +40,7 @@ getDetails(theid){
     }
   }
 
-
+//shows all the collections
   showCollections(){
     this.collectionService.getCollections()
     .subscribe((data)=>{
@@ -51,6 +51,7 @@ getDetails(theid){
     });
 };
 
+//shows all the items in a collection 
 showItems(){
     this.itemincollectionservice.getItems()
     .subscribe((data)=>{
