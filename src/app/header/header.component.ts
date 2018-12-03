@@ -44,7 +44,6 @@ public deleteAllAtStart(){
     }
     else{
       for(var i=0;i<this.itemIdArray.length;i++){
-        alert("deleting" + this.itemIdArray[i]);
         this.cartService.deleteCartProduct(this.itemIdArray[i])
         .subscribe((data)=>{
         console.log(data);

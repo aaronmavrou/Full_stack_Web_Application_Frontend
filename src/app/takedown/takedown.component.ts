@@ -50,6 +50,7 @@ export class TakedownComponent implements OnInit {
   };
   
   savePolicy(val, theInfo){
+    theInfo = this.authService.encodeHTML(theInfo);
     this.dmcaService.putDmcas(this.myIds[val], theInfo)
       .subscribe((data)=>{
       this.showDmcas();

@@ -43,6 +43,8 @@ addCollections(name, description, theval, owner){
 };
 
 saveEverything(name1, description1){
+  name1 = this.authService.encodeHTML(name1);
+  description1 = this.authService.encodeHTML(description1);
   let owner = this.authService.theEmail;
   this.addCollections(name1, description1, this.visValue, owner);
   for(var i =0; i< this.myproducts.length; i++){

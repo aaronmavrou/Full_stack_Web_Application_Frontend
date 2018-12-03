@@ -3,7 +3,6 @@
         <button class="btn btn-info" (click)="goBack()">Return to HomePage</button>
     </div>
 </div>
-
 <h1>Security and Privacy Policy</h1>
 
 
@@ -16,10 +15,14 @@
         <ng-container *ngIf="authService.isAuthenticated()">
             <div *ngIf="authService.isManager()">
             <hr>
-            <input *ngIf="authService.isManager()" type="text" #desc />
-
+            <textarea 
+                type="text"
+                #lavdesc
+                class = "form-control"
+                rows="12">
+            </textarea>
             <br>
-            <button class="btn btn-success" type="submit" (click)="savePolicy(i, desc.value)">Save Security and Privacy Policy</button>
+            <button class="btn btn-success" type="submit" (click)="savePolicy(i, lavdesc.value)">Save Security and Privacy Policy</button>
             </div>
         </ng-container>
       </li>
@@ -27,5 +30,6 @@
 </ul>
 </div>
 </div>
+
 
 

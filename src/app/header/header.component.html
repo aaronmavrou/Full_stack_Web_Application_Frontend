@@ -9,8 +9,6 @@
                 <ng-container *ngIf="authService.isAuthenticated()">
                     <li *ngIf="authService.isManager()"><a>Manager Account</a></li>
                 </ng-container>
-                <li routerLinkActive="active" *ngIf="authService.isAuthenticated()"><a routerLink="/recipes">Recipes</a></li>
-                <li routerLinkActive="active" *ngIf="authService.isAuthenticated()"><a routerLink="/shopping-list">Shopping List</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <ng-template [ngIf]="!authService.isAuthenticated()">

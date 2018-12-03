@@ -34,6 +34,7 @@ export class LoggingComponent implements OnInit {
   };
   
   savePolicy(theInfo){
+    theInfo = this.authService.encodeHTML(theInfo);
     this.dmcaService.postDmcas('dmca', theInfo)
       .subscribe((data)=>{
       this.showDmcas();

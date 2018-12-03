@@ -27,6 +27,11 @@ export class AuthService {
     
     constructor(private router: Router,
                 private http: HttpClient){}
+
+encodeHTML(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+}
+    
     
     signupUser(email: string, password: string){
         firebase.auth().createUserWithEmailAndPassword(email, password)

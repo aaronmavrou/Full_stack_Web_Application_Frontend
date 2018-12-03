@@ -47,6 +47,10 @@ productIds: any;
   };
   
   addProducts(newName, newPrice, newQuantity, newDescription){
+    newName = this.authService.encodeHTML(newName);
+    newPrice = this.authService.encodeHTML(newPrice);
+    newQuantity = this.authService.encodeHTML(newQuantity);
+    newDescription = this.authService.encodeHTML(newDescription);
     this.productService.postFruits(newName, newPrice, newQuantity, newDescription, 3)
     .subscribe((data)=>{
       this.showProducts();
@@ -55,6 +59,7 @@ productIds: any;
   };
   
   changeName(newName, index){
+    newName = this.authService.encodeHTML(newName);
     alert(newName + "   " + index);
     this.productService.putProductsName(this.productIds[index], newName)
       .subscribe((data)=>{
@@ -63,6 +68,7 @@ productIds: any;
   }
   
   changeDesc(newDesc, index){
+    newDesc = this.authService.encodeHTML(newDesc);
     alert(newDesc + "   " + index);
     this.productService.putProductsDescription(this.productIds[index], newDesc)
       .subscribe((data)=>{

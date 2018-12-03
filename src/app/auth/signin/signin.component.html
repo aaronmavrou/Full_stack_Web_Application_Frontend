@@ -21,23 +21,3 @@
 
 
 
-
-<h1>Fruits</h1>
-
-
-<ul>
-  <li *ngFor="let comment of comments">
-    {{ comment }}
-  </li>
-</ul>
-
-
-
-<h3>Add Fruit:</h3>
-
-<input #adding type="text"/>
-<button (click)="addFruits(adding.value)">Add</button>
-
-<br>
-
-<button (click)="showComments()">Show Comments</button>

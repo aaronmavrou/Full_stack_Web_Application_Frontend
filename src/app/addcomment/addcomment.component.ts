@@ -22,6 +22,9 @@ leaveHere(){
 }
 
 addComment(prod, rate, comment){
+  prod = this.authService.encodeHTML(prod);
+  rate = this.authService.encodeHTML(rate);
+  comment = this.authService.encodeHTML(comment);
   if(rate == ''){
     alert("Cannot save comment. Please enter a rating between 1 and 5");
   }
