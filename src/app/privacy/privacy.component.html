@@ -16,14 +16,10 @@
         <ng-container *ngIf="authService.isAuthenticated()">
             <div *ngIf="authService.isManager()">
             <hr>
-            <textarea *ngIf="authService.isManager()"
-                type="text"
-                #description
-                class = "form-control"
-                rows="12">
-            </textarea>
+            <input *ngIf="authService.isManager()" type="text" #desc />
+
             <br>
-            <button class="btn btn-success" type="submit" (click)="savePolicy(i, description.value)">Save Security and Privacy Policy</button>
+            <button class="btn btn-success" type="submit" (click)="savePolicy(i, desc.value)">Save Security and Privacy Policy</button>
             </div>
         </ng-container>
       </li>

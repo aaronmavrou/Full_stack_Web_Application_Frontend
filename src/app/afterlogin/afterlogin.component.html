@@ -4,21 +4,17 @@
 <div class="row">
     <div class="col-xs-12">
         <button class="btn btn-success"  (click)="makeCollection()">Add A Collection</button>
-    </div>
-</div>
-<hr>
-<div class="row">
-    <div class="col-xs-12">
         <button class="btn btn-info"  (click)="viewCollections()">View Public Collections</button>
     </div>
 </div>
+<hr>
 
 <ul>
   <ng-container *ngFor="let product of products; let i = index">
       <li>
         <span> {{ product.name }} <button type="submit" (click)="getDetails(product.name)">Get Item Details</button> 
-        <button type="submit" (click)="addTheItem(product.name, product.price)">Add to Cart</button>
-        <button type="submit" (click)="makeReview(product.name)">Review this Product</button>
+        <button type="submit" (click)="addTheItem(product.name, product.price, product.quantity)">Add to Cart</button>
+        <button type="submit" (click)="makeReview()">Review this Product</button>
         </span>
             <div id="{{product.name}}" style="display: none;">
             Price: {{ product.price }}
@@ -64,6 +60,6 @@
     <tr><th></th><th>TOTAL</th><th>{{totalPrice}}</th></tr>
 </table>
 <button class="btn btn-warning"type="submit" (click)="deleteAll()">Clear Cart</button>
-<button class="btn btn-success"type="submit">Buy Items</button>
+<button class="btn btn-success"type="submit" (click)="buyAll()">Buy Items</button>
 <br>
 <hr>

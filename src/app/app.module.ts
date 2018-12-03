@@ -39,6 +39,7 @@ import { AdminComponent } from './admin/admin.component';
 import { DeactivateComponent } from './deactivate/deactivate.component';
 import { CommentsComponent } from './comments/comments.component';
 import { PrivledgeComponent } from './privledge/privledge.component';
+import { AddcommentComponent } from './addcomment/addcomment.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { PrivledgeComponent } from './privledge/privledge.component';
     AdminComponent,
     DeactivateComponent,
     CommentsComponent,
-    PrivledgeComponent
+    PrivledgeComponent,
+    AddcommentComponent
   ],
   imports: [
     BrowserModule,

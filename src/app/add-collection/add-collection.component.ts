@@ -44,7 +44,6 @@ addCollections(name, description, theval, owner){
 
 saveEverything(name1, description1){
   let owner = this.authService.theEmail;
-  alert(owner);
   this.addCollections(name1, description1, this.visValue, owner);
   for(var i =0; i< this.myproducts.length; i++){
     this.addItemInCollection(name1, this.myproducts[i], this.myquantitys[i]);

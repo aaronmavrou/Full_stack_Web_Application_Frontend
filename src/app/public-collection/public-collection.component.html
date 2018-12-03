@@ -7,7 +7,7 @@
 <h1>Sporting Goods</h1>
 <ul>
   <ng-container *ngFor="let collection of collections">
-      <li *ngIf="(collection.theVisibility == flase)">
+      <li *ngIf="(collection.theVisibility == false)">
         <span> {{ collection.name }} <button type="submit" (click)="getDetails(collection.name)">Get Collection Details</button> </span>
             <div id="{{collection.name}}" style="display: none;">
             Description: {{ collection.theDescription }}

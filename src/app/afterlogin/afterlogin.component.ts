@@ -31,13 +31,12 @@ export class AfterloginComponent implements OnInit {
     this.showCart();
   }
   
-  // callPut(){
-  //   this.productService.putProducts(this.idArray[1], 'joe', 4, 3, 'hillbilly', 4)
-  //   .subscribe((data)=>{
-  //     console.log(data);
-  //     this.showProducts();
-  //   })
-  // }
+  callPut(index, lequantity){
+    this.productService.putProductsQuantity(this.idArray[index], lequantity)
+    .subscribe((data)=>{
+      console.log(data);
+    })
+  }
   
   makeCollection(){
     this.router.navigate(['add-collection']);
@@ -55,8 +54,8 @@ export class AfterloginComponent implements OnInit {
     })
   }
   
-  makeReview(productName: string){
-    this.router.navigate(['review']);
+  makeReview(){
+    this.router.navigate(['addcomment']);
   }
   
   getDetails(theid){
@@ -83,13 +82,17 @@ export class AfterloginComponent implements OnInit {
   });
   }
   
-  addTheItem(newName, newPrice){
-    alert("we adding the item");
+  addTheItem(newName, newPrice, quantity){
+    if(quantity == 0){
+      alert("Cannot add item to cart because there is not enough stock");
+    }
+    else{
     this.cartService.postCart(newName, newPrice, 1)
     .subscribe((data)=>{
       this.showCart();
       console.log(data);
     });
+  }
   };
   
   updatePrice(thePrice, val){
@@ -100,18 +103,47 @@ export class AfterloginComponent implements OnInit {
     })
   }
   
+  decrease(index){
+    let myQuantity = 0;
+    let newPrice = 0;
+    let actPrice = 0;
+    myQuantity = this.cartItems[index].quantity - 1;
+    
+      for(var i =0; i<this.products.length;i++){
+      if(this.cartItems[index].name == this.products[i].name){
+        actPrice = this.products[i].price;
+      }
+    }
+    
+    newPrice = ((myQuantity)*(actPrice));
+    this.updatePrice(newPrice, index);
+    
+    this.cartService.putCartsQuantity(this.itemIdArray[index],  myQuantity)
+    .subscribe((data)=>{
+      this.showCart();
+      console.log(data);
+    })
+  }
+  
   increase(index){
+    for(var i =0; i<this.products.length;i++){
+      if(this.cartItems[index].name == this.products[i].name && this.cartItems[index].quantity == this.products[i].quantity){
+        alert("Cannot inscrease item quantity because there is not enough stock");
+        return;
+      }
+    }
+    
     let myQuantity = 0;
     let newPrice = 0;
     let actPrice = 0;
     myQuantity = this.cartItems[index].quantity + 1;
+    
     for(var i =0; i<this.products.length;i++){
-      alert(this.cartItems[index].name + "    " + this.products[i].name);
       if(this.cartItems[index].name == this.products[i].name){
-        alert("inside the if");
         actPrice = this.products[i].price;
       }
     }
+    
     newPrice = ((myQuantity)*(actPrice));
     this.updatePrice(newPrice, index);
     this.cartService.putCartsQuantity(this.itemIdArray[index],  myQuantity)
@@ -121,36 +153,45 @@ export class AfterloginComponent implements OnInit {
     })
   }
   
-// BuyAll(){
-//   var isConfirmed = confirm("Are you sure you want to make this purchase?");
-//   if(isConfirmed){
-//     if(this.itemArray.length == 0){
-//       alert("Cart is empty. Add items to cart to make a purchase");
-//     }
-     
-//     else{
-//         for(var i=0;i<this.itemIdArray.length;i++){
-//           for(var j=0;j<this.products.length;i++){
-//             if(this.products[i].name == this.cartItems[i].name){
-              
-//             }
-//           }
-//         this.cartService.deleteCartProduct(this.itemIdArray[i])
-//         .subscribe((data)=>{
-//         console.log(data);
-//         })
-//       }
-//       this.showCart();
-//     }
-     
-//   }
+buyAll(){
+  var isConfirmed = confirm("Are you sure you want to make this purchase?");//asks if user wants to make purchase
+  if(isConfirmed){
+    if(this.itemIdArray.length == 0){
+      alert("Cart is empty. Add items to cart to make a purchase");//if cart is empty they cant purchase
+    }
+    else{
+      //doing the receipt
+      let theText = "";
+      for(var j=0;j<this.cartItems.length;j++){
+        theText = theText + " Product " + this.cartItems[j].name + " Price: $" + this.cartItems[j].price + " Quantity: " + this.cartItems[j].quantity;
+      }
+      alert(theText + "     " + this.totalPrice);
+        
+      //updates product quantities
+      for(var i=0;i<this.itemIdArray.length;i++){
+          for(var j=0;j<this.products.length;j++){
+            if(this.products[j].name == this.cartItems[i].name){
+              this.products[j].quantity = this.products[j].quantity - this.cartItems[i].quantity;
+              this.callPut(j, this.products[j].quantity);//updates the quantity in the database
+            }
+          }
+        //deletes products from the cart
+        this.cartService.deleteCartProduct(this.itemIdArray[i])
+        .subscribe((data)=>{
+        console.log(data);
+        })
+      }
+      //regathers the cart to display it
+      this.showCart();
+    }
+  }
    
-//   else{
-//     return;
-//   }
-// }
+  else{//returns if the user hits cancel
+    return;
+  }
+}
   
-deleteAll(){
+public deleteAll(){
   var isConfirmed = confirm("Are you sure you want to clear your cart?");
   if(isConfirmed){
     if(this.itemIdArray.length == 0){
@@ -170,15 +211,6 @@ deleteAll(){
     return;
   }
 }
-  
-  decrease(index){
-    let myQuantity = this.cartItems[index].quantity - 1;
-    this.cartService.putCartsQuantity(this.itemIdArray[index],  myQuantity)
-    .subscribe((data)=>{
-      this.showCart();
-      console.log(data);
-    })
-  }
   
   public getTotal(){
     this.totalPrice = 0;

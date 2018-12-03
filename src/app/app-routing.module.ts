@@ -21,6 +21,7 @@ import { AdminComponent } from './admin/admin.component';
 import { PrivledgeComponent } from './privledge/privledge.component';
 import { DeactivateComponent } from './deactivate/deactivate.component';
 import { CommentsComponent } from './comments/comments.component';
+import {AddcommentComponent } from './addcomment/addcomment.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/unauth', pathMatch: 'full' },
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
     { path: 'deactivate', component: DeactivateComponent},
     { path: 'privledge', component: PrivledgeComponent},
     { path: 'comments', component: CommentsComponent},
+    { path: 'addcomment', component: AddcommentComponent},
   ];
 
 @NgModule({
